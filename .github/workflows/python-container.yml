@@ -12,8 +12,11 @@ jobs:
     - name: Build Image
       run: docker build -t test-app .
       
-    - name: Install BuildX
-      run: git clone git://github.com/docker/buildx && cd buildx && make install
+    - name: install buildx
+      id: buildx
+      uses: crazy-max/ghaction-docker-buildx@v1
+      with:
+        version: latest
       
     - name: Build multiplatform Images
       run: docker buildx build --platform linux/arm/v7,linux/arm64/v8,linux/amd64 -t test-app .
