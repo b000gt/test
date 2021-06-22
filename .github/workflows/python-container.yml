@@ -16,4 +16,4 @@ jobs:
         image: my-app
         tags: latest ${{ github.sha }}
         dockerfiles: |
-          ./Dockerfile
+          ./dockerfile
