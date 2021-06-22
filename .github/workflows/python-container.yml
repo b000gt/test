@@ -13,7 +13,7 @@ jobs:
       id: build-image
       uses: redhat-actions/buildah-build@v2
       with:
-        image: my-app
+        image: ghcr.io/${{ github.repository_owner }}/my-app
         tags: latest
         dockerfiles: |
           ./dockerfile
