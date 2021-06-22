@@ -15,6 +15,7 @@ jobs:
       with:
         image: my-app
         tags: latest
+        archs: x86_64
         dockerfiles: |
           ./dockerfile
           
