@@ -25,5 +25,8 @@ jobs:
         password: ${{ github.token }}
         registry: ghcr.io/${{ github.repository_owner }}
         
+    - name: Show Images
+      run: docker images
+        
     - name: Push Image to Registry
       run: docker push ${{ steps.build-image.outputs.image }}:${{ steps.build-image.outputs.tags }}
