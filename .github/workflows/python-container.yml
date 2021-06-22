@@ -26,7 +26,7 @@ jobs:
         registry: ghcr.io/${{ github.repository_owner }}
         
     - name: Show Images
-      run: docker images
+      run: podman images -a
         
     - name: Push Image to Registry
       run: podman push ${{ steps.build-image.outputs.image }}:${{ steps.build-image.outputs.tags }} ghcr.io/${{ github.repository_owner }}/${{ steps.build-image.outputs.image }}:${{ steps.build-image.outputs.tags }}
