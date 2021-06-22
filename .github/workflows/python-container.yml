@@ -14,12 +14,6 @@ jobs:
       uses: crazy-max/ghaction-docker-buildx@v1
       with:
         version: latest
-      
-    - name: Build multiplatform Images
-      run: docker buildx build --platform linux/arm/v7,linux/arm64/v8,linux/amd64 -t test-app .
-      
-    - name: Show Images
-      run: docker images
           
     - name: Login to GitHub Package Registry
       uses: docker/login-action@v1
@@ -27,9 +21,9 @@ jobs:
         registry: ghcr.io
         username: ${{ github.repository_owner }}
         password: ${{ secrets.GHCR_TOKEN }}
-        
-    - name: Retag Image
-      run: docker tag test-app ghcr.io/${{ github.repository_owner }}/test-app
       
-    - name: Push Image to Registry
-      run: docker push ghcr.io/${{ github.repository_owner }}/test-app
+    - name: Build multiplatform Images
+      run: docker buildx build --push --platform linux/arm/v7,linux/arm64/v8,linux/amd64 -t test-app .
+      
+    - name: Show Images
+      run: docker images
