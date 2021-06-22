@@ -13,7 +13,7 @@ jobs:
       id: build-image
       uses: redhat-actions/buildah-build@v2
       with:
-        image: ghcr.io/${{ github.repository_owner }}/my-app
+        image: my-app
         tags: latest
         dockerfiles: |
           ./dockerfile
@@ -29,4 +29,4 @@ jobs:
       run: docker images
         
     - name: Push Image to Registry
-      run: docker push ${{ steps.build-image.outputs.image }}:${{ steps.build-image.outputs.tags }}
+      run: podman push ${{ steps.build-image.outputs.image }}:${{ steps.build-image.outputs.tags }} ghcr.io/${{ github.repository_owner }}/${{ steps.build-image.outputs.image }}:${{ steps.build-image.outputs.tags }}
