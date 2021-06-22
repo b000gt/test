@@ -8,9 +8,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-
-    - name: Build Image
-      run: docker build -t test-app .
       
     - name: install buildx
       id: buildx
